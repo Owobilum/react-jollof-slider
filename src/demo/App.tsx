@@ -1,6 +1,6 @@
 import './App.css'
 
-import {JollofSlider, SliderItem} from './component'
+import {JollofSlider, SliderItem} from '../component'
 
 const items = [1,2,3,4,5]
 function App() {
