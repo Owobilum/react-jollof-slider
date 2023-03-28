@@ -4,6 +4,9 @@
     transition-duration: 500ms;
     min-height: 3.125rem;
   }
+  .JS_item > *{
+    box-sizing: border-box;
+  }
   
   .JS_slider_container {
     overflow-x: hidden;
@@ -35,12 +38,16 @@
     width: 0.5rem;
     border-radius: 9999px;
     background-color: rgb(209 213 219);
+    cursor: pointer;
+    outline: none;
+    border: none;
   }
 
   .JS_icon_btn{
     background: transparent;
     outline: none;
     border: none;
+    cursor: pointer;
   }
   
   .JS_grow {

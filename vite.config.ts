@@ -5,7 +5,10 @@ import dts from 'vite-plugin-dts'
 import EsLint from 'vite-plugin-linter'
 import tsConfigPaths from 'vite-tsconfig-paths'
 const { EsLinter, linterPlugin } = EsLint
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
+
 import * as packageJson from './package.json'
+
 // https://vitejs.dev/config/
 export default defineConfig((configEnv) => ({
   plugins: [
@@ -17,7 +20,8 @@ export default defineConfig((configEnv) => ({
     linterPlugin({
       include: ['./src}/**/*.{ts,tsx}'],
       linters: [new EsLinter({ configEnv })],
-    })
+    }),
+    cssInjectedByJsPlugin()
   ],
   build: {
     lib: {
