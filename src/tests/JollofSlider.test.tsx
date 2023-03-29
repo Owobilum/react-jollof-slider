@@ -7,7 +7,7 @@ const items = [1, 2, 3, 4, 5]
 
 function renderComponent() {
   render(
-    <JollofSlider numberOfItems={5}>
+    <JollofSlider numberOfItems={items.length}>
       {items.map((item) => (
         <SliderItem key={item}>{item}</SliderItem>
       ))}
@@ -16,7 +16,7 @@ function renderComponent() {
 }
 function renderComponentWithDotNav() {
   render(
-    <JollofSlider numberOfItems={5} isShowArrowNav={false} isShowDotNav>
+    <JollofSlider numberOfItems={items.length} isShowArrowNav={false} isShowDotNav>
       {items.map((item) => (
         <SliderItem key={item}>{item}</SliderItem>
       ))}
@@ -25,7 +25,7 @@ function renderComponentWithDotNav() {
 }
 function renderComponentWithAutoplay() {
   render(
-    <JollofSlider numberOfItems={5} isAutoplay autoPlayInterval={1}>
+    <JollofSlider numberOfItems={items.length} isAutoplay autoPlayInterval={1}>
       {items.map((item) => (
         <SliderItem key={item}>{item}</SliderItem>
       ))}
