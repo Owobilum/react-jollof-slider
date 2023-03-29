@@ -1,74 +1,73 @@
 .JS_item {
-    transition-property: transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 500ms;
-    min-height: 3.125rem;
-  }
-  .JS_item > *{
-    box-sizing: border-box;
-  }
-  
-  .JS_slider_container {
-    overflow-x: hidden;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-  
-  .JS_nav_btn_container {
-    margin-top: 1rem;
-    align-items: center;
-    justify-content: center;
-    gap: 0.25rem;
-    display: flex;
-  }
-  
-  .JS_arrow_btn_container {
-    margin-top: 1rem;
-    align-items: center;
-    justify-content: center;
-    gap: 1.25rem;
-    display: flex;
-    color: black;
-  }
-  
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+  min-height: 3.125rem;
+}
+.JS_item > * {
+  box-sizing: border-box;
+}
+
+.JS_slider_container {
+  overflow-x: hidden;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.JS_nav_btn_container {
+  margin-top: 1rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  display: flex;
+}
+
+.JS_arrow_btn_container {
+  margin-top: 1rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  display: flex;
+  color: black;
+}
+
+.JS_nav_btn {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 9999px;
+  background-color: rgb(209 213 219);
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.JS_icon_btn {
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.JS_grow {
+  transition: all 0.2s ease-in-out;
+}
+.JS_grow:hover {
+  transform: scale(1.1);
+}
+
+.JS_fit {
+  max-width: fit-content;
+}
+
+.JS_active {
+  background-color: black;
+}
+
+@media (min-width: 1024px) {
   .JS_nav_btn {
-    margin-left: 0.25rem;
-    margin-right: 0.25rem;
-    height: 0.5rem;
-    width: 0.5rem;
-    border-radius: 9999px;
-    background-color: rgb(209 213 219);
-    cursor: pointer;
-    outline: none;
-    border: none;
+    height: 0.75rem;
+    width: 0.75rem;
   }
-
-  .JS_icon_btn{
-    background: transparent;
-    outline: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .JS_grow {
-    transition: all 0.2s ease-in-out;
-  }
-  .JS_grow:hover {
-    transform: scale(1.1);
-  }
-
-  .JS_fit {
-    max-width: fit-content;
-  }
-  
-  .JS_active {
-    background-color: black;
-  }
-  
-  @media (min-width: 1024px) {
-    .JS_nav_btn {
-      height: 0.75rem;
-      width: 0.75rem;
-    }
-  }
-  
+}

@@ -1,4 +1,4 @@
-import { useEffect,useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface Size {
   width: number | undefined
@@ -26,4 +26,4 @@ function useWindowDimensions(): Size {
   return windowSize
 }
 
-export {useWindowDimensions}
+export { useWindowDimensions }
