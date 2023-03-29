@@ -34,8 +34,8 @@
 .JS_nav_btn {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
-  height: 0.5rem;
-  width: 0.5rem;
+  height: 0.75rem;
+  width: 0.75rem;
   border-radius: 9999px;
   background-color: rgb(209 213 219);
   cursor: pointer;
@@ -63,11 +63,4 @@
 
 .JS_active {
   background-color: black;
-}
-
-@media (min-width: 1024px) {
-  .JS_nav_btn {
-    height: 0.75rem;
-    width: 0.75rem;
-  }
 }
