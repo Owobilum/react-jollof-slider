@@ -8,10 +8,11 @@ import {
   Ref,
   useEffect,
   useRef,
-  useState} from 'react'
+  useState,
+} from 'react'
 
 import { SliderProvider, useSliderContext } from './context'
-import {useWindowDimensions} from './hooks'
+import { useWindowDimensions } from './hooks'
 import { BackwardIcon, ForwardIcon } from './icons'
 
 const FLEX_GAP = 16
@@ -20,7 +21,7 @@ export type ItemWidthType = { xs?: number; sm?: number; lg?: number }
 type directionType = 'forward' | 'backward'
 export interface ISlider {
   children: ReactNode
-  items: any[]
+  numberOfItems: number
   customWidth?: ItemWidthType
   isAutoplay?: boolean
   isShowDotNav?: boolean
@@ -53,7 +54,7 @@ export const SliderItem: FC<PropsWithChildren> = ({ children }) => {
 const Slider = forwardRef(function _Slider(
   {
     children,
-    items,
+    numberOfItems,
     customWidth,
     isAutoplay = false,
     isShowDotNav = false,
@@ -64,7 +65,7 @@ const Slider = forwardRef(function _Slider(
     flexgap,
     themeColor,
   }: ISlider,
-  ref: Ref<HTMLDivElement> | undefined
+  ref: Ref<HTMLDivElement> | undefined,
 ): ReactElement {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
@@ -85,8 +86,7 @@ const Slider = forwardRef(function _Slider(
     itemWidth = customWidth?.xs || 240
   }
 
-  const activeGap =
-    (flexgap || flexgap === 0) && flexgap >= 0 ? flexgap : FLEX_GAP
+  const activeGap = (flexgap || flexgap === 0) && flexgap >= 0 ? flexgap : FLEX_GAP
   const translateValue = itemWidth * currentIndex + currentIndex * activeGap
 
   const handleChangeIndex = (direction: directionType, itemsLength: number) => {
@@ -106,56 +106,49 @@ const Slider = forwardRef(function _Slider(
     timeoutRef.current && clearInterval(timeoutRef.current)
 
     const timeoutId = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length)
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % numberOfItems)
     }, activePlayInterval)
 
     timeoutRef.current = timeoutId
 
     return () => clearInterval(timeoutId)
-  }, [items.length, isAutoplay, activePlayInterval, isHovered])
+  }, [numberOfItems, isAutoplay, activePlayInterval, isHovered])
+
+  const renderNavDots = (): JSX.Element[] => {
+    const dots = []
+    for (let i = 0; i < numberOfItems; i++) {
+      dots.push(
+        <button
+          aria-label={`view item ${i + 1}`}
+          key={i}
+          onClick={() => setCurrentIndex(i)}
+          style={themeColor && currentIndex === i ? { backgroundColor: themeColor } : {}}
+          className={`JS_nav_btn ${currentIndex === i && 'JS_active'}`}
+        />,
+      )
+    }
+
+    return dots
+  }
 
   return (
-    <SliderProvider
-      value={{ itemWidth, translateValue, isHovered, setIsHovered }}
-    >
+    <SliderProvider value={{ itemWidth, translateValue, isHovered, setIsHovered }}>
       <div className="JS_slider_container" ref={ref}>
-        <div style={{ gap: `${activeGap / ROOT_EL}rem`, display: 'flex' }}>
-          {children}
-        </div>
-        {!!isShowDotNav && (
-          <div className="JS_nav_btn_container">
-            {items?.length &&
-              items.map((item, i) => (
-                <button
-                  aria-label={`view item ${i + 1}`}
-                  key={i}
-                  onClick={() => setCurrentIndex(i)}
-                  style={
-                    themeColor && currentIndex === i
-                      ? { backgroundColor: themeColor }
-                      : {}
-                  }
-                  className={`JS_nav_btn ${currentIndex === i && 'JS_active'}`}
-                />
-              ))}
-          </div>
-        )}
+        <div style={{ gap: `${activeGap / ROOT_EL}rem`, display: 'flex' }}>{children}</div>
+        {!!isShowDotNav && <div className="JS_nav_btn_container">{renderNavDots()}</div>}
         {!!isShowArrowNav && (
-          <div
-            className="JS_arrow_btn_container"
-            style={themeColor ? { color: themeColor } : {}}
-          >
+          <div className="JS_arrow_btn_container" style={themeColor ? { color: themeColor } : {}}>
             <button
               aria-label="backward"
               className="JS_icon_btn JS_grow JS_fit"
-              onClick={() => handleChangeIndex('backward', items.length)}
+              onClick={() => handleChangeIndex('backward', numberOfItems)}
             >
               {backwardIcon ?? <BackwardIcon fill={themeColor} />}
             </button>
             <button
               aria-label="forward"
               className="JS_icon_btn JS_grow JS_fit"
-              onClick={() => handleChangeIndex('forward', items.length)}
+              onClick={() => handleChangeIndex('forward', numberOfItems)}
             >
               {forwardIcon ?? <ForwardIcon fill={themeColor} />}
             </button>
@@ -167,5 +160,3 @@ const Slider = forwardRef(function _Slider(
 })
 
 export default memo(Slider)
-
-

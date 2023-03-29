@@ -10,8 +10,8 @@
   
   .JS_slider_container {
     overflow-x: hidden;
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
   
   .JS_nav_btn_container {
@@ -26,7 +26,7 @@
     margin-top: 1rem;
     align-items: center;
     justify-content: center;
-    gap: 2.25rem;
+    gap: 1.25rem;
     display: flex;
     color: black;
   }
