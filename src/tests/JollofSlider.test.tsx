@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { JollofSlider, SliderItem } from '../component'
@@ -33,7 +33,21 @@ function renderComponentWithAutoplay() {
   )
 }
 
-describe('JollofSlider', () => {
+function renderComponentWithIcons() {
+  render(
+    <JollofSlider
+      numberOfItems={items.length}
+      forwardIcon={<span>Advance</span>}
+      backwardIcon={<span>Retreat</span>}
+    >
+      {items.map((item) => (
+        <SliderItem key={item}>{item}</SliderItem>
+      ))}
+    </JollofSlider>,
+  )
+}
+
+describe('JollofSlider with default props', () => {
   beforeEach(() => {
     vi.useFakeTimers()
   })
@@ -60,6 +74,9 @@ describe('JollofSlider', () => {
     fireEvent.click(backButton)
     expect(itemTwo).toHaveStyle({ transform: 'translateX(-126.5rem)' })
   })
+})
+
+describe('JollofSlider with dotnav', () => {
   it('renders dot navigation', () => {
     renderComponentWithDotNav()
     expect(screen.getAllByRole('button', { name: /view item/i })).toHaveLength(5)
@@ -71,6 +88,15 @@ describe('JollofSlider', () => {
 
     fireEvent.click(itemFourButton)
     expect(itemTwo).toHaveStyle({ transform: 'translateX(-94.875rem)' })
+  })
+})
+
+describe('Jollof slider with autoplay', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+  })
+  afterEach(() => {
+    vi.restoreAllMocks()
   })
   it('autoplays slider', async () => {
     renderComponentWithAutoplay()
@@ -97,5 +123,18 @@ describe('JollofSlider', () => {
     })
 
     expect(itemTwo).toHaveStyle({ transform: 'translateX(-0rem)' })
+  })
+})
+
+describe('JollofSlider with custom icons', () => {
+  it('renders custom forward icon component', () => {
+    renderComponentWithIcons()
+    const nextButton = screen.getByRole('button', { name: /forward/i })
+    expect(within(nextButton).getByText(/advance/i)).toBeInTheDocument()
+  })
+  it('renders custom backward icon component', () => {
+    renderComponentWithIcons()
+    const backButton = screen.getByRole('button', { name: /backward/i })
+    expect(within(backButton).getByText(/retreat/i)).toBeInTheDocument()
   })
 })
