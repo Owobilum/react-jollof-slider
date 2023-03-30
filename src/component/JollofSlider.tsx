@@ -52,7 +52,10 @@ export const SliderItem: FC<PropsWithChildren> = ({ children }) => {
 }
 
 const Slider = forwardRef(function _Slider(
-  {
+  props: ISlider,
+  ref: Ref<HTMLDivElement> | undefined,
+): ReactElement {
+  const {
     children,
     numberOfItems,
     customWidth,
@@ -61,12 +64,10 @@ const Slider = forwardRef(function _Slider(
     isShowArrowNav = true,
     forwardIcon,
     backwardIcon,
-    autoPlayInterval,
+    autoPlayInterval = 3,
     flexgap,
     themeColor,
-  }: ISlider,
-  ref: Ref<HTMLDivElement> | undefined,
-): ReactElement {
+  } = props
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
   const { width: screenWidth } = useWindowDimensions()
@@ -78,9 +79,9 @@ const Slider = forwardRef(function _Slider(
       : 3000
 
   let itemWidth: number
-  if (!screenWidth || screenWidth > 600) {
+  if (!screenWidth || screenWidth >= 600) {
     itemWidth = customWidth?.lg || 490
-  } else if (screenWidth > 370) {
+  } else if (screenWidth >= 370) {
     itemWidth = customWidth?.sm || 340
   } else {
     itemWidth = customWidth?.xs || 240
