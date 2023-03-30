@@ -76,7 +76,21 @@
     "type": "git",
     "url": "https://github.com/owobilum/react-jollof-slider"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "react-component",
+    "react-slider",
+    "react-carousel",
+    "slider",
+    "carousel",
+    "slider-component",
+    "carousel-component",
+    "responsive-carousel",
+    "responsive-slider",
+    "typescript-slider",
+    "typescript-carousel",
+    "typescript"
+  ],
   "author": "lawrence ikpebe",
   "bugs": {
     "url": "https://github.com/owobilum/react-jollof-slider/issues"
