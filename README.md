@@ -12,6 +12,7 @@ A lightweight, responsive, SSR supported, well tested, React.js slider component
 - [Installation](#installation)
 - [Usage](#usage)
 - [Props](#props)
+- [Demo](#demo)
 
 ## Installation
 
@@ -80,3 +81,7 @@ export default App
 | **autoPlayInterval** | number  | `3`                      | Interval (in seconds) between slide changes during autoplay.                                                                                                                               |
 | **flexgap**          | number  | `16`                     | Gap (in pixels) between slider items                                                                                                                                                       |
 | **themeColor**       | string  | `#000000`                | color of elements like buttons and indicators in the slider                                                                                                                                |
+
+## Demo
+
+[![Edit react-jollof-slider-demo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/github/Owobilum/slider-demo/main?file=README.md&workspace=%257B%2522activeFilepath%2522%253A%2522%252Fsrc%252FApp.js%2522%252C%2522openFiles%2522%253A%255B%255D%252C%2522sidebarPanel%2522%253A%2522EXPLORER%2522%252C%2522gitSidebarPanel%2522%253A%2522COMMIT%2522%252C%2522spaces%2522%253A%257B%2522clg6nesxp000x3b6nxzo2lnvb%2522%253A%257B%2522key%2522%253A%2522clg6nesxp000x3b6nxzo2lnvb%2522%252C%2522name%2522%253A%2522Default%2522%252C%2522devtools%2522%253A%255B%257B%2522type%2522%253A%2522PREVIEW%2522%252C%2522taskId%2522%253A%2522start%2522%252C%2522port%2522%253A3000%252C%2522key%2522%253A%2522clg6nfdqj00703b6n4w5vdw0q%2522%252C%2522isMinimized%2522%253Afalse%257D%252C%257B%2522type%2522%253A%2522TASK_LOG%2522%252C%2522taskId%2522%253A%2522start%2522%252C%2522key%2522%253A%2522clg6nfba4003s3b6njz1hdnge%2522%252C%2522isMinimized%2522%253Atrue%257D%255D%257D%257D%252C%2522currentSpace%2522%253A%2522clg6nesxp000x3b6nxzo2lnvb%2522%252C%2522spacesOrder%2522%253A%255B%2522clg6nesxp000x3b6nxzo2lnvb%2522%255D%252C%2522hideCodeEditor%2522%253Afalse%257D)
